@@ -7,8 +7,10 @@ Implemented Webserver which serves a dashboard for live sensor value reading.
 ## Getting started
 
 This project will be based on the sparcfun ESP32 Thing as microcontroller
-![] (img/esp_3.jpg) 
-I choose this microcontroller over the an Arduino because of its wifi capabilities which I will use to serve a dashboard webpage to display and set values or modes.
+
+![alt text](img/esp_3.jpg)
+ 
+I choose this microcontroller over the an Arduino because of its wifi capabilities which I will use to serve a dashboard webpage to display and set values or modes. 
 
 ## Dashboard
 
