@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #include "modules/mdl_blinky.h"
 #include "modules/mdl_mpr121.h"
+#include "modules/led_ring12.h"
 
 
 const int BUTTON_PIN = 0;
@@ -15,17 +16,19 @@ void setup(void){
   pinMode(LED_PIN, OUTPUT);
 
   Serial.begin(115200);
-  Serial.println("--- SMART FABRICS ---\n");
+  //Serial.println("--- SMART FABRICS ---\n");
 
   attachInterrupt(0, buttonfn, FALLING);
 
   mpr_setup();
+  led_setup();
 }
 
 
 void loop(void){
   
   mpr_loop();
+  led_loop();
  
 }
 

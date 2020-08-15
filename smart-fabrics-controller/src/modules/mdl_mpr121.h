@@ -22,8 +22,10 @@ void mpr_setup()
     while (1)
       ;
   }
-  Serial.println("MPR121 found!");
+  //Serial.println("MPR121 found!");
 }
+
+void led_rainbow(int w);
 
 void mpr_loop()
 {
@@ -41,8 +43,11 @@ void mpr_loop()
   //   }
   // }
 
+   if ((currtouched & _BV(11)) && !(lasttouched & _BV(11)) ) {
+      led_rainbow(1);
+   }
   // reset state
-  lasttouched = currtouched;
+  //lasttouched = currtouched;
 
   // comment out this line for detailed data from the sensor!
   //return;
@@ -52,12 +57,13 @@ void mpr_loop()
 
   for (uint8_t i = 0; i < 12; i++)
   {
+    Serial.print("x:");
     Serial.print(i);
     Serial.print(":");
     Serial.print(cap.baselineData(i));
     Serial.print(":");
     Serial.println(cap.filteredData(i));
+    
   }
-
-  delay(100);
+  delay(50);
 }

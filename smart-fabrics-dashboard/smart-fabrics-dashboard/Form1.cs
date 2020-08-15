@@ -5,18 +5,22 @@ using System.IO.Ports;
 using System.Threading;
 using System.Media;
 
+
 namespace smart_fabrics_dashboard
 {
+
     public partial class Form1 : Form
     {
+        const int row = 4;
+        const int col = 7;
         Thread serialThread;
         Boolean comport = false;
         int[] mpr = new int[12];
         int[] mprbase = new int[12];
-        PictureBox[,] box = new PictureBox[4, 4];
+        PictureBox[,] box = new PictureBox[col, row];
         PictureBox[] bar = new PictureBox[12];
         string[] ports;
-        Label[,] lbl = new Label[4, 4];
+        Label[,] lbl = new Label[col, row];
         Boolean setBase = true;
 
         public Form1()
@@ -28,7 +32,7 @@ namespace smart_fabrics_dashboard
         {
             ports = SerialPort.GetPortNames();
             serialThread = new Thread(ReadSerial);
-            timer1.Interval = 100;
+            timer1.Interval = 120;
 
             checkSerial();
 
@@ -57,20 +61,40 @@ namespace smart_fabrics_dashboard
 
             while (comport)
             {
-                string[] spa = serialPort1.ReadLine().Split(':');
-                id = Convert.ToInt32(spa[0]);
-                baseline = Convert.ToInt32(spa[1]);
-                val = Convert.ToInt32(spa[2]);
-                if (setBase)
+                string s = serialPort1.ReadLine();
+                if(s == "MPR121 not found, check wiring?")
                 {
-                    mprbase[id] = baseline;
-                    if (++count > 80)
+                    btnCOM.Text = "MPR!";
+                    comport = false;
+                    break ;
+                }
+
+                string[] spa = s.Split(':');
+           
+                {
+                    if (spa[0] == "x")
                     {
-                        count = 0;
-                        setBase = false;
+                        id = Convert.ToInt32(spa[1]);
+                        int b = Convert.ToInt32(spa[2]);
+                        baseline = b;
+                        int v = Convert.ToInt32(spa[3]);
+                        val = v;
+
+
+                        if (setBase)
+                        {
+                            mprbase[id] = baseline;
+                            if (++count > 80)
+                            {
+                                count = 0;
+                                setBase = false;
+                            }
+                        }
+                        mpr[id] = val;
+
                     }
                 }
-                mpr[id] = val;
+
             }
         }
 
@@ -140,14 +164,14 @@ namespace smart_fabrics_dashboard
                 bar[i].Width = mpr[i];
             }
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < row; i++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < col; j++)
                 {
-                    int c = mpr[i] + mpr[j + 4];
-                    c = Convert.ToInt32(map(c, 0, mprbase[i] + mprbase[j + 4] + 20, 0, 255));
-                    box[i, j].BackColor = Color.FromArgb(c, c, c);
-                    lbl[i, j].Text = "(" + i + "," + j + ") " + c + " ["+ i+"/"+ (j+4) +"]";
+                    int c = mpr[i] + mpr[j + row];
+                    c = Math.Min(255, Convert.ToInt32(map(c, 0, mprbase[i] + mprbase[j + row], 0, 255)));
+                    box[j, i].BackColor = Color.FromArgb(c, c, c);
+                    lbl[j, i].Text = "(" + i + "," + j + ") " + c + " ["+ i+"/"+ (j+row) +"]";
                 }
             }
 
@@ -185,11 +209,11 @@ namespace smart_fabrics_dashboard
             padding = 5;
             size = 100;
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < col; i++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < row; j++)
                 {
-                    box[j, i] = new PictureBox
+                    box[i, j] = new PictureBox
                     {
                         Width = size,
                         Height = size,
@@ -197,13 +221,13 @@ namespace smart_fabrics_dashboard
                         Left = (pos.X + (i * (size + padding))),
                         Top = (pos.Y + (j * (size + padding))),
                     };
-                    this.Controls.Add(box[j, i]);
+                    this.Controls.Add(box[i, j]);
 
-                    lbl[j, i] = new Label
+                    lbl[i, j] = new Label
                     {
                         AutoSize = true,
-                        Left = box[j, i].Left + 2,
-                        Top = box[j, i].Top + 2,
+                        Left = box[i, j].Left + 2,
+                        Top = box[i, j].Top + 2,
                         ForeColor = Color.White,
                         Font = new Font("Cascadia Mono", 7, FontStyle.Regular),
                         Text = "",
@@ -211,8 +235,8 @@ namespace smart_fabrics_dashboard
                         Visible = false,
                     };
 
-                    this.Controls.Add(lbl[j, i]);
-                    lbl[j, i].BringToFront();
+                    this.Controls.Add(lbl[i, j]);
+                    lbl[i, j].BringToFront();
 
                 }
             }

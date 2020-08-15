@@ -8,3 +8,13 @@ C:\Users\zero\source\repos\smart-fabrics-dashboard\smart-fabrics-dashboard\obj\D
 C:\Users\zero\source\repos\smart-fabrics-dashboard\smart-fabrics-dashboard\obj\Debug\smart-fabrics-dashboard.csproj.CoreCompileInputs.cache
 C:\Users\zero\source\repos\smart-fabrics-dashboard\smart-fabrics-dashboard\obj\Debug\smart-fabrics-dashboard.exe
 C:\Users\zero\source\repos\smart-fabrics-dashboard\smart-fabrics-dashboard\obj\Debug\smart-fabrics-dashboard.pdb
+D:\smart-fabrics\smart-fabrics-dashboard\smart-fabrics-dashboard\bin\Debug\smart-fabrics-dashboard.exe.config
+D:\smart-fabrics\smart-fabrics-dashboard\smart-fabrics-dashboard\bin\Debug\smart-fabrics-dashboard.exe
+D:\smart-fabrics\smart-fabrics-dashboard\smart-fabrics-dashboard\bin\Debug\smart-fabrics-dashboard.pdb
+D:\smart-fabrics\smart-fabrics-dashboard\smart-fabrics-dashboard\obj\Debug\smart-fabrics-dashboard.csprojAssemblyReference.cache
+D:\smart-fabrics\smart-fabrics-dashboard\smart-fabrics-dashboard\obj\Debug\smart_fabrics_dashboard.Form1.resources
+D:\smart-fabrics\smart-fabrics-dashboard\smart-fabrics-dashboard\obj\Debug\smart_fabrics_dashboard.Properties.Resources.resources
+D:\smart-fabrics\smart-fabrics-dashboard\smart-fabrics-dashboard\obj\Debug\smart-fabrics-dashboard.csproj.GenerateResource.cache
+D:\smart-fabrics\smart-fabrics-dashboard\smart-fabrics-dashboard\obj\Debug\smart-fabrics-dashboard.csproj.CoreCompileInputs.cache
+D:\smart-fabrics\smart-fabrics-dashboard\smart-fabrics-dashboard\obj\Debug\smart-fabrics-dashboard.exe
+D:\smart-fabrics\smart-fabrics-dashboard\smart-fabrics-dashboard\obj\Debug\smart-fabrics-dashboard.pdb
