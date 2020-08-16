@@ -63,7 +63,7 @@ if (spa[0] == "x"){
 The conversion is necessary to get interger values.
 However the conversion of (int)0 was string(""). I extended my protocol with a starting character "x".
 
-Now i can catch exceptions with
+Now~~~~ i can catch exceptions with
 
 ````
 if (spa[0] == "x")
