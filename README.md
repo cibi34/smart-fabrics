@@ -74,5 +74,5 @@ Where spa[0] is the first element of my splittet line I read from the serial buf
 
 \[x]:[ID]:[BASELINE]:[FILTERED]
 
-![alt text](smart-fabrics-controller/img/dev_dash.png)
+![alt text](smart-fabrics-controller/img/dev_dash1.png)
 
